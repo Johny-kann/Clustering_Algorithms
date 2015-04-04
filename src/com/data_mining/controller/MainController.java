@@ -255,16 +255,7 @@ public class MainController {
 		
 	}
 	
-	public void output()
-	{
-		trainDataAccuracy();
-		
-		if(Notations.TEST_ON)
-		{
-			testDataAccuracy();
-		}
-		mainRuleSetPrint();
-	}
+	
 	
 	public void trainDataAccuracy()
 	{
@@ -293,26 +284,7 @@ public class MainController {
 				FilesList.WRITE_RULE_SET) ;
 	}
 	
-	public void testDataAccuracy()
-	{
-		AttributeAndRecordLoaders.loadAttributeFromFile(testData, FilesList.ATTRIBUTES_FILES, FilesList.TEST_RECORD_FILES);
-		TrainingLog.testLogs.info("Accuracy Loaded from file");
-		StringBuffer stBuffer = new StringBuffer();
-		
-			
-		Outputs.printToConsole(
-		new Outputs().outPutTable(testData)
-		);
-		stBuffer.append("Test Data");
-		stBuffer.append(System.lineSeparator());
-		stBuffer.append(new Outputs().outPutTable(testData)
-				);
-		stBuffer.append("Accuracy "+
-				new ChoosingAttributes().AccuracyForTableByRuleSet(testData, mainRuleSet,stBuffer));
-		
-		Outputs.printToConsole(stBuffer.toString());
-		new TextFileWriter().writeFile(stBuffer.toString(), FilesList.WRITE_TEST_RESULT);
-	}
+	
 	
 	
 	public DataTable getMainTable()

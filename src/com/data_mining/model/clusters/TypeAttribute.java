@@ -1,4 +1,4 @@
-package com.data_mining.model.attributes_records;
+package com.data_mining.model.clusters;
 
 public enum TypeAttribute {
 	continuous,ID,externalLabel

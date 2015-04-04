@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.data_mining.logic.ClusterLogics;
-import com.data_mining.model.attributes_records.TypeAttribute;
 
 
 /**

@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import com.data_mining.constants.Notations;
-import com.data_mining.model.attributes_records.TypeAttribute;
-
 /**
  * @author Janakiraman
  *

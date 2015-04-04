@@ -11,7 +11,6 @@ import java.util.logging.Level;
 import com.data_mining.constants.Notations;
 import com.data_mining.constants.ValueConstants;
 import com.data_mining.logs.TrainingLog;
-import com.data_mining.model.attributes_records.TypeAttribute;
 import com.data_mining.model.clusters.AttributeCluster;
 import com.data_mining.model.clusters.BisectCluster;
 import com.data_mining.model.clusters.BisectClusterList;
@@ -21,7 +20,7 @@ import com.data_mining.model.clusters.Cluster;
 import com.data_mining.model.clusters.DataCluster;
 import com.data_mining.model.clusters.RandPoints;
 import com.data_mining.model.clusters.RecordCluster;
-import com.data_mining.view.console.Outputs;
+import com.data_mining.model.clusters.TypeAttribute;
 
 /**
  * Has most of the functions necessary for dealing with cluster operations

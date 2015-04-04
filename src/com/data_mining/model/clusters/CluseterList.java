@@ -3,9 +3,6 @@ package com.data_mining.model.clusters;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.data_mining.model.attributes_records.AttributesSpecifications;
-import com.data_mining.model.attributes_records.DataTable;
-import com.data_mining.model.attributes_records.Records;
 
 
 /**

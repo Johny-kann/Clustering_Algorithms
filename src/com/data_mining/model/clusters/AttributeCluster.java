@@ -3,8 +3,6 @@ package com.data_mining.model.clusters;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.data_mining.model.attributes_records.TypeAttribute;
-
 /**
  * Contains attributes data used in the table of the data. More like a header
  * @author Janakiraman
