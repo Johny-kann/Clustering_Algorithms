@@ -9,19 +9,14 @@ import com.data_mining.file_readers.PropertiesConfig;
 import com.data_mining.file_readers.TextFileWriter;
 import com.data_mining.logic.AgglomerativeComputations;
 import com.data_mining.logic.AttributeAndRecordLoaders;
-import com.data_mining.logic.ChoosingAttributes;
 import com.data_mining.logic.ClusterLogics;
 import com.data_mining.logic.CommonLogics;
 import com.data_mining.logic.ErrorsAndGain;
-import com.data_mining.logic.SearchingLogics;
 import com.data_mining.logs.TrainingLog;
-import com.data_mining.model.attributes_records.DataTable;
-import com.data_mining.model.attributes_records.OrderedClassSet;
 import com.data_mining.model.clusters.AlgorithmType;
 import com.data_mining.model.clusters.CluseterList;
 import com.data_mining.model.clusters.Cluster;
 import com.data_mining.model.clusters.DataCluster;
-import com.data_mining.model.rules.RuleSet;
 import com.data_mining.view.console.Outputs;
 
 
@@ -33,21 +28,14 @@ import com.data_mining.view.console.Outputs;
  */
 public class MainController {
 
-	DataTable mainAttributes;
-	DataTable trainData;
-	DataTable validationData;
-	DataTable testData;
-	RuleSet mainRuleSet;
-	OrderedClassSet sortedClassSet;
+
 	DataCluster dataCluster;
 	CluseterList clusters;
 
 	
 	public MainController()
 	{
-		mainAttributes = new DataTable();
-		mainRuleSet = new RuleSet();
-		testData = new DataTable();
+	
 		dataCluster = new DataCluster();
 		clusters = new CluseterList();
 		PropertiesConfig.assignInputFiles();
@@ -175,54 +163,9 @@ public class MainController {
 		
 	}
 	
-	public void fillRuleSet()
-	{
-		CommonLogics cl = new CommonLogics();
 
-		
-	//	System.out.println(classes.getOrderedClasses());
-	ChoosingAttributes choose = new ChoosingAttributes();
-	if(Notations.PRUNING_ON)
-	{
-		sortedClassSet = new OrderedClassSet(
-				cl.sortMapValues
-				(cl.classAndCounts(trainData))
-				);
-		TrainingLog.trainLogs.info("Sorted the input classes");
-		
-		Outputs.printToConsole("Order of the classes "+ sortedClassSet.getClassesAlone()
-				);
-		
-	mainRuleSet = choose.fillRuleSet(trainData, sortedClassSet,validationData);
-	orderBasedOnGeneralError();
-	}else
-	{
-	//	System.out.println(mainAttributes.sizeOfRecords()+","+trainData.sizeOfRecords()+","+testData.sizeOfRecords());
-		Map<String,Integer> map = cl.classAndCounts(mainAttributes);
-		
 	
-		sortedClassSet = new OrderedClassSet(
-				cl.sortMapValues
-				(map)
-				);
-		
-		Outputs.printToConsole("Order of the classes "+ sortedClassSet.getClassesAlone()
-				);
-		mainRuleSet = choose.fillRuleSet(mainAttributes, sortedClassSet,validationData);
-	}
 	
-	}
-	
-	public void getResultSet()
-	{
-		
-	}
-	
-	public void orderBasedOnGeneralError()
-	{
-		new CommonLogics().sortRulesBasedonGeneralizationError(mainRuleSet);
-		
-	}
 	
 	public String outputClusters()
 	{
@@ -256,56 +199,6 @@ public class MainController {
 	}
 	
 	
-	
-	public void trainDataAccuracy()
-	{
-		StringBuffer stBuffer = new StringBuffer();
-
-		stBuffer.append(new Outputs().outputRuleSet(mainRuleSet));
-		stBuffer.append("Train Data");
-		stBuffer.append(System.lineSeparator());
-		
-				stBuffer.append(new Outputs().outPutTable(mainAttributes));
-	
-		stBuffer.append("Accuracy "+
-		new ChoosingAttributes().AccuracyForTableByRuleSet(mainAttributes, mainRuleSet,stBuffer)
-				);
-
-		Outputs.printToConsole(stBuffer.toString());
-		new TextFileWriter().writeFile(stBuffer.toString(), FilesList.WRITE_TRAIN_RESULT);
-			
-	}
-	
-	public void mainRuleSetPrint()
-	{
-		StringBuffer stBuffer = new StringBuffer();
-		new TextFileWriter().writeFile(
-				new Outputs().outputRuleSet(mainRuleSet), 
-				FilesList.WRITE_RULE_SET) ;
-	}
-	
-	
-	
-	
-	public DataTable getMainTable()
-	{
-		return mainAttributes;
-	}
-	
-	public DataTable getTrainAttributes()
-	{
-		return trainData;
-	}
-	
-	public DataTable getTestAttributes() {
-		return validationData;
-	}
-
-	public OrderedClassSet getSortedClassSet() {
-		return sortedClassSet;
-	}
-
-
 
 	public DataCluster getDataCluster() {
 		return dataCluster;
