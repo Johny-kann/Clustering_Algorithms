@@ -149,13 +149,15 @@ public class CommonLogics {
 		
 	}
 	
-	public static void settingFiles(String name,String filesConst)
+	public static String settingFiles(String name,String filesConst)
 	{
 		TrainingLog.mainLogs.info("Setting file "+name+" file constant "+filesConst);
 		if(!( name == null || name.isEmpty()))
 		{
 			filesConst = name;
 		}
+		
+		return filesConst;
 	}
 	
 		

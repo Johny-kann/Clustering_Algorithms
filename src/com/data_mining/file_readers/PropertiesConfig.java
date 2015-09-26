@@ -17,19 +17,22 @@ public class PropertiesConfig {
 		Properties prop = new Properties();
 		try
         {
+	
            prop.load(new FileReader(FilesList.CONFIG_FILE));
-           
+    
         //   prop.load(is);
        
-           CommonLogics.settingFiles(prop.getProperty("Attributes"), FilesList.ATTRIBUTES_FILES);
-           CommonLogics.settingFiles(prop.getProperty("Train-records"), FilesList.RECORD_FILES);
+           FilesList.ATTRIBUTES_FILES =  CommonLogics.settingFiles(prop.getProperty("Attributes"), FilesList.ATTRIBUTES_FILES);
+           FilesList.RECORD_FILES = CommonLogics.settingFiles(prop.getProperty("Train-records"), FilesList.RECORD_FILES);
                     
-           CommonLogics.settingFiles(prop.getProperty("Out-Result"), FilesList.WRITE_RESULT);
-           CommonLogics.settingFiles(prop.getProperty("Out-Items-Rules"), FilesList.WRITE_ITEMSET);
-            
+           FilesList.WRITE_RESULT = CommonLogics.settingFiles(prop.getProperty("Out-Result"), FilesList.WRITE_RESULT);
+           FilesList.WRITE_ITEMSET = CommonLogics.settingFiles(prop.getProperty("Out-Items-Rules"), FilesList.WRITE_ITEMSET);
+           
+           System.out.println(FilesList.WRITE_RESULT);
             
         } catch (FileNotFoundException e)
         {
+        	System.out.println("FIle nt found");
          	Outputs.printToConsole("File not Found ");
             e.printStackTrace();
             
